@@ -39,7 +39,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
 DATABASES = {
-    'default': env.db('DATABASE_URL', default='postgres:///guesthouse'),
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        # Or path to database file if using sqlite3.
+        'NAME': 'guesthouse',
+        'USER': 'postgres',
+        'PASSWORD': 'bandit',
+        # Empty for localhost through domain sockets or           '127.0.0.1'
+        # for localhost through TCP.
+        # 'HOST': '0.0.0.0',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    }
 }
 DATABASES['default']['ATOMIC_REQUESTS'] = True
 
