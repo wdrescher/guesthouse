@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
 	{% block content %}
 		{% for p in product_list %}
+			<h2>
+				{{p.title}}
+			</h2>
 			<p>
-				{{p}}
+				{{p.description}}
 			</p>
+			<h3>Total Cost: {{p.totalcost}}</h3>
 			{% endfor %}
 	{% endblock %}
