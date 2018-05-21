@@ -82,7 +82,7 @@ THIRD_PARTY_APPS = [
 ]
 LOCAL_APPS = [
     'guesthouse.users.apps.UsersConfig',
-    'guesthouse.management'
+    'guesthouse.management.apps.ManagementConfig',
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
