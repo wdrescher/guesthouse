@@ -17,32 +17,48 @@
 						{{project}}
 				<!-- TASKS -->
 				{% if project.tasks.all != 0 %}
-					<h4>Tasks:</h4>
-					{% for t in project.tasks.all %}
-						<p>
-							{{t}},
-							{{t.description}},
-							Due: {{t.due_date}}
-							<span class="float-right">{{t.cost}}</span>
-						</p>
-						<hr>
-					{% endfor %}
+					<h4>Tasks:
+						<div class="float-right">
+							<button class="btn btn-primary" type="button" name="">New Task</button>
+						</div>
+					</h4>
+					<table border='1px' width="100%">
+						{% for t in project.tasks.all %}
+							<tr>
+								<td>{{t}}</td>
+								<td>{{t.description}}</td>
+								<td>Due: {{t.due_date}}</td>
+								<td><span class="float-right">{{t.cost}}</span></td>
+							</tr>
+						{% endfor %}
+					</table>
 				{% endif %}
 
 				<!--RESOURCES-->
+				<table border="1px" width="100%">
 				{% if resources.all != 0 %}
-					<h4>Resources:</h4>
+				<h4>Resources:
+					<div class="float-right">
+						<button class="btn btn-primary" type="button" name="">New Resource</button>
+					</div>
+				</h4>
 					{% for r in project.resources.all %}
-						<p>
-							{{r}},
-							{{r.description}},
-							{{r.owner}}
-							<span class="float-right">{{r.cost}}</span>
-						</p>
-						<hr>
+						<tr>
+							<td>{{r}}</td>
+							<td>{{r.description}}</td>
+							<td>{{r.owner}}</td>
+							<td>
+								<div class="float-right">
+									{{r.cost}}
+								</div>
+							</td>
+						</tr>
 					{% endfor %}
 				{% endif %}
+				<tr>
 
+				</tr>
+				</table>
 			<!--SUBTOTAL-->
 			<div class='float-right'><h3>Total Cost: {{product.totalcost}}</h3></div>
 		{% endfor %}

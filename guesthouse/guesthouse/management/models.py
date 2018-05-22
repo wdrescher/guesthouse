@@ -1,7 +1,9 @@
-from django.db import models
 from datetime import date
+from django.db import models
+from django.urls import reverse
 
 from guesthouse.users import models as user_model
+
 # Create your models here.
 MAX_LENGTH = 50
 LONG_LENGTH = 500
@@ -33,6 +35,10 @@ class Product(models.Model):
                 if t.due_date > farthest:
                     farthest = t.due_date
         return farthest
+
+    def get_absolute_url(self):
+        return reverse("management:detail", args=[int(self.pk)])
+
 
 class Project(models.Model):
     title = models.TextField(max_length=MAX_LENGTH)

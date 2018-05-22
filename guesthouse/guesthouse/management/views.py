@@ -33,6 +33,7 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
 #Update
 class ProductUpdateView(LoginRequiredMixin, UpdateView):
     model = Product
+    fields = ['title', 'description']
 
 #Delete
 class ProductDeleteView(LoginRequiredMixin, DeleteView):
