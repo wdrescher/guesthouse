@@ -1,12 +1,16 @@
 {% extends 'base.html' %}
+
 	{% block content %}
 		{% for p in product_list %}
 			<h2>
 				{{p.title}}
 			</h2>
 			<p>
-				{{p.description}}
+				Description: <br>
+				{{p.description}}<br>
+				Due: {{p.farthest_date}}
 			</p>
-			<h3>Total Cost: {{p.totalcost}}</h3>
+			<h5>Total Cost: {{p.totalcost}}</h5>
+			<a href="{% url "management:detail" p.pk %}">more</a>
 			{% endfor %}
 	{% endblock %}

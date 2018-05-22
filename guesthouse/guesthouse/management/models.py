@@ -1,9 +1,11 @@
 from django.db import models
+from datetime import date
+
 from guesthouse.users import models as user_model
 # Create your models here.
 MAX_LENGTH = 200
 LONG_LENGTH = 500
-
+TODAY = date.today()
 
 class Product(models.Model):
     cost = models.DecimalField(decimal_places=2, max_digits=20)
@@ -24,6 +26,14 @@ class Product(models.Model):
             for r in project.resources.all():
                 sum+= r.cost
         return sum
+
+    def farthest_date(self):
+        farthest = TODAY
+        for p in self.projects.all():
+            for t in p.tasks.all():
+                if t.due_date > farthest:
+                    farthest = t.due_date
+        return farthest
 
 class Project(models.Model):
     title = models.TextField(max_length=MAX_LENGTH)

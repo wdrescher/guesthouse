@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+	{% block content %}
+		<h2>{{product}}</h2>
+		<p>
+			{{product.description}}
+		</p>
+
+		<p>
+			{{product.farthest_date}}
+		</p>
+
+		<div class="projects">
+			<h3>Current Projects:</h3>
+				{% for project in product.projects.all %}
+					<p>
+						{{project}}
+				<!-- TASKS -->
+				{% if project.tasks.all != 0 %}
+					<h4>Tasks:</h4>
+					{% for t in project.tasks.all %}
+						<p>
+							{{t}},
+							{{t.description}},
+							Due: {{t.due_date}}
+							<span class="float-right">{{t.cost}}</span>
+						</p>
+						<hr>
+					{% endfor %}
+				{% endif %}
+
+				<!--RESOURCES-->
+				{% if resources.all != 0 %}
+					<h4>Resources:</h4>
+					{% for r in project.resources.all %}
+						<p>
+							{{r}},
+							{{r.description}},
+							{{r.owner}}
+							<span class="float-right">{{r.cost}}</span>
+						</p>
+						<hr>
+					{% endfor %}
+				{% endif %}
+
+			<!--SUBTOTAL-->
+			<div class='float-right'><h3>Total Cost: {{product.totalcost}}</h3></div>
+		{% endfor %}
+	{% endblock %}
