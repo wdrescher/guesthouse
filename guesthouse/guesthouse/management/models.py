@@ -3,12 +3,11 @@ from datetime import date
 
 from guesthouse.users import models as user_model
 # Create your models here.
-MAX_LENGTH = 200
+MAX_LENGTH = 50
 LONG_LENGTH = 500
 TODAY = date.today()
 
 class Product(models.Model):
-    cost = models.DecimalField(decimal_places=2, max_digits=20)
     title = models.TextField(max_length=MAX_LENGTH)
     description = models.TextField(max_length=LONG_LENGTH)
     worker = models.ManyToManyField(user_model.User)

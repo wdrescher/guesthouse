@@ -46,4 +46,13 @@
 			<!--SUBTOTAL-->
 			<div class='float-right'><h3>Total Cost: {{product.totalcost}}</h3></div>
 		{% endfor %}
+		<!--DELETE-->
+		<a href="{% url 'management:product_delete' product.pk %}">
+			<button class="btn btn-danger" type="button" name="Delete">Delete</button>
+		</a>
+
+		<!--UPDATE-->
+		<a href="{% url 'management:product_update' product.pk %}">
+			<button type="button" class="btn btn-warning">Edit</button>
+		</a>
 	{% endblock %}
