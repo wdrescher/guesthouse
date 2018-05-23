@@ -13,55 +13,24 @@
 		<div class="projects">
 			<h3>Current Projects:</h3>
 				{% for project in product.projects.all %}
-					<p>
+					<h3>
 						{{project}}
+					</h3>
 				<!-- TASKS -->
-				{% if project.tasks.all != 0 %}
-					<h4>Tasks:
-						<div class="float-right">
-							<button class="btn btn-primary" type="button" name="">New Task</button>
-						</div>
-					</h4>
-					<table border='1px' width="100%">
-						{% for t in project.tasks.all %}
-							<tr>
-								<td>{{t}}</td>
-								<td>{{t.description}}</td>
-								<td>Due: {{t.due_date}}</td>
-								<td><span class="float-right">{{t.cost}}</span></td>
-							</tr>
-						{% endfor %}
-					</table>
-				{% endif %}
+				<h6>Total Tasks: {{project.task_count}}</h6>
 
 				<!--RESOURCES-->
-				<table border="1px" width="100%">
-				{% if resources.all != 0 %}
-				<h4>Resources:
-					<div class="float-right">
-						<button class="btn btn-primary" type="button" name="">New Resource</button>
-					</div>
-				</h4>
-					{% for r in project.resources.all %}
-						<tr>
-							<td>{{r}}</td>
-							<td>{{r.description}}</td>
-							<td>{{r.owner}}</td>
-							<td>
-								<div class="float-right">
-									{{r.cost}}
-								</div>
-							</td>
-						</tr>
-					{% endfor %}
-				{% endif %}
-				<tr>
-
-				</tr>
-				</table>
+				<h6>Total Resources: {{project.resource_count}}</h6>
+				<!--COST-->
+				<h6>Total Cost: {{product.totalcost}}</h6>
 			<!--SUBTOTAL-->
-			<div class='float-right'><h3>Total Cost: {{product.totalcost}}</h3></div>
+
 		{% endfor %}
+		<!--Create New Prouct-->
+		<a href="{% url 'management:project_create' product.pk %}">
+			<button type="button"class="btn btn-primary">Create Project</button>
+		</a>
+
 		<!--DELETE-->
 		<a href="{% url 'management:product_delete' product.pk %}">
 			<button class="btn btn-danger" type="button" name="Delete">Delete</button>

@@ -47,6 +47,18 @@ class Project(models.Model):
     def __str__(self):
         return self.title
 
+    def task_count(self):
+        sum = 0
+        for t in self.tasks.all():
+            sum += 1
+        return sum
+
+    def resource_count(self):
+        sum = 0
+        for r in self.resources.all():
+            sum += 1
+        return sum
+
 class Task(models.Model):
     title = models.TextField(max_length=MAX_LENGTH)
     description = models.TextField(max_length=LONG_LENGTH)
