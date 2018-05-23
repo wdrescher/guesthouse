@@ -17,23 +17,18 @@ class Product(models.Model):
     def __str__(self):
         return self.title
 
-    def totalcost(self):
+    def total_cost(self):
         sum = 0
-
         for i in self.projects.all():
-            project = i
-            for t in project.tasks.all():
-                sum+= t.cost
-            for r in project.resources.all():
-                sum+= r.cost
+            sum += i.total_cost()
         return sum
 
     def farthest_date(self):
         farthest = TODAY
-        for p in self.projects.all():
-            for t in p.tasks.all():
-                if t.due_date > farthest:
-                    farthest = t.due_date
+        for project in self.projects.all():
+            far = project.proj_farthest_date()
+            if far > farthest:
+                farthest = far
         return farthest
 
     def get_absolute_url(self):
@@ -58,6 +53,21 @@ class Project(models.Model):
         for r in self.resources.all():
             sum += 1
         return sum
+
+    def total_cost(self):
+        sum = 0
+        for t in self.tasks.all():
+            sum+= t.cost
+        for r in self.resources.all():
+            sum+= r.cost
+        return sum
+
+    def proj_farthest_date(self):
+        farthest = TODAY
+        for t in self.tasks.all():
+            if t.due_date > farthest:
+                farthest = t.due_date
+        return farthest
 
 class Task(models.Model):
     title = models.TextField(max_length=MAX_LENGTH)

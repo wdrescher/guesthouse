@@ -11,10 +11,14 @@
 		</p>
 
 		<div class="projects">
-			<h3>Current Projects:</h3>
 				{% for project in product.projects.all %}
 					<h3>
 						{{project}}
+						<span class="">
+							<a href="{% url "management:project_detail" project.pk %}">
+								<button type="button"class="btn btn-primary">More</button>
+							</a>
+						</span>
 					</h3>
 				<!-- TASKS -->
 				<h6>Total Tasks: {{project.task_count}}</h6>
@@ -22,10 +26,10 @@
 				<!--RESOURCES-->
 				<h6>Total Resources: {{project.resource_count}}</h6>
 				<!--COST-->
-				<h6>Total Cost: {{product.totalcost}}</h6>
+				<h6>Total Cost: {{project.total_cost}}</h6>
 			<!--SUBTOTAL-->
-
 		{% endfor %}
+		<h3>Product Cost: {{product.total_cost}}</h3>
 		<!--Create New Prouct-->
 		<a href="{% url 'management:project_create' product.pk %}">
 			<button type="button"class="btn btn-primary">Create Project</button>
