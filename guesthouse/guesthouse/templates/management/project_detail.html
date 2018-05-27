@@ -6,26 +6,34 @@
 			<!-- TASKS -->
 			{% if project.tasks.all != 0 %}
 				<h4>Tasks:
+					<!--CREATE TASK-->
 					<div class="float-right">
-							<button class="btn btn-primary" type="button" name="">New Task</button>
+							<a href="{% url 'management:task_create' project %}">
+								<button class="btn btn-primary" type="button" name="">New Task</button>
+							</a>
 					</div>
 				</h4>
-				<table border='1px' width="100%">
+				<table width="100%">
 					{% for t in project.tasks.all %}
-						<tr>
-							<td>{{t}}</td>
-							<td>{{t.description}}</td>
-							<td>Due: {{t.due_date}}</td>
-							<td><span class="float-right">{{t.cost}}</span></td>
-						</tr>
+							<tr>
+								<td>
+									{{t}}
+									<a href="{% url 'management:task_detail' t.pk %}">more</a>
+								</td>
+								<td>{{t.description}}</td>
+								<td>Due: {{t.due_date}}</td>
+								<td><span class="float-right">{{t.cost}}</span></td>
+							</tr>
 					{% endfor %}
 				</table>
 			{% endif %}
 
 			<!--RESOURCES-->
-			<table border="1px" width="100%">
+			<table width="100%">
 			{% if resources.all != 0 %}
 			<h4>Resources:
+
+				<!--CREATE RESOURCE-->
 				<div class="float-right">
 					<button class="btn btn-primary" type="button" name="">New Resource</button>
 				</div>
@@ -47,5 +55,15 @@
 
 			</tr>
 			</table>
+
+			<!--UPDATE-->
+			<a href="{% url 'management:project_update' project.pk %}">
+				<button type="button" class="btn btn-primary">Edit</button>
+			</a>
+
+			<!--DELETE-->
+			<a href="{% url 'management:project_delete' project.pk %}">
+				<button type="button" class="btn btn-danger">Delete</button>
+			</a>
 	</div>
 	{% endblock content %}

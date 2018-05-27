@@ -13,4 +13,12 @@ urlpatterns = [
     path('projdetail/<pk>', views.ProjectDetailView.as_view(), name='project_detail'),
     path('projupdate/<pk>', views.ProjectUpdateView.as_view(), name='project_update'),
     path('projdelete/<pk>', views.ProjectDeleteView.as_view(), name='project_delete'),
+    path('taskcreate/<project>', views.TaskCreateView.as_view(), name='task_create'),
+    path('taskdetail/<pk>', views.TaskDetailView.as_view(), name='task_detail'),
+    path('taskupdate/<pk>', views.TaskUpdateView.as_view(), name='task_update'),
+    path('taskdelete/<pk>', views.TaskDeleteView.as_view(), name='task_delete'),
+    path('resourcecreate/<project>', views.ResourceCreateView.as_view(), name='resource_create'),
+    path('resourcedetail/<pk>', views.ResourceDetailView.as_view(), name='resource_detail'),
+    path('resourceupdate/<pk>', views.ResourceUpdateView.as_view(), name='resouce_update'),
+    path('resourcedelete/<pk>', views.ResourceDeleteView.as_view(), name='resource_delete'),
 ]

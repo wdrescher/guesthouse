@@ -6,7 +6,7 @@ from guesthouse.users import models as user_model
 
 # Create your models here.
 MAX_LENGTH = 50
-LONG_LENGTH = 500
+LONG_LENGTH = 300
 TODAY = date.today()
 
 class Product(models.Model):
@@ -69,6 +69,9 @@ class Project(models.Model):
                 farthest = t.due_date
         return farthest
 
+    def get_absolute_url(self):
+        return reverse("management:project_detail", args=[int(self.pk)])
+
 class Task(models.Model):
     title = models.TextField(max_length=MAX_LENGTH)
     description = models.TextField(max_length=LONG_LENGTH)
@@ -79,6 +82,9 @@ class Task(models.Model):
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return reverse("management:task_detail", args=[int(self.pk)])
+
 class Resource(models.Model):
     name = models.TextField(max_length=MAX_LENGTH)
     description = models.TextField(max_length=LONG_LENGTH)
@@ -88,6 +94,9 @@ class Resource(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse("management:resource_detail", args=[int(self.pk)])
 
 class Comment(models.Model):
     body = models.TextField(max_length=1000)
